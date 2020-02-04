@@ -3,8 +3,19 @@ package com.ArutlaHarish.mavenexample;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
+
+
 class Test_driver
 {
+    static int get_totalweight(ArrayList<Gifts> al)
+    {
+        int totalweight = 0;
+        for(Gifts i : al)
+        {
+            totalweight+= i.get_weight();
+        }
+        return totalweight;
+    }
 public static void main(String[] args) {
     Scanner sc =new Scanner(System.in);
     int sugarcontent = 0;
@@ -15,112 +26,98 @@ public static void main(String[] args) {
     int choco_weight = 0;
     int choco_price = 0;
     String Choco_name = "";
+    String type="";
 
-    System.out.println("Enter the Sweet details ");
-    System.out.println("Enter the Details of Halwa");
-    System.out.println("Enter the SugarContent of Halwa");
-    sugarcontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    sweetname =sc.next();
-    Halwa halwa =new Halwa(sugarcontent, weight, price, sweetname);
-    
-    
-    System.out.println("Enter the Details of Gulabjamun");
-    System.out.println("Enter the SugarContent of Gulabjamun");
-    sugarcontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    sweetname =sc.next();
-    GulabJamun gulabJamun = new GulabJamun(sugarcontent, weight, price, sweetname);
+    System.out.println("Enter the number of gifts");
+    int n =sc.nextInt();
+    ArrayList<Gifts> list =new ArrayList<Gifts>();
+    for(int i=0;i<n;i++)
+    {
+          System.out.println("Enter the type of Gift");
+          type=sc.next();
+          if(type.equals("Chocolates"))
+          {
+              System.out.println("Enter the chocolatecontent");
+            chocolatecontent = sc.nextInt();
+            System.out.println("Enter the weight ");
+            choco_weight = sc.nextInt();
+            System.out.println("Enter the price ");
+            choco_price = sc.nextInt();
+            System.out.println("Enter the Chocolatename");
+            Choco_name =sc.next();
+            
+            if(Choco_name.equals("Cadburry"))
+            {
+                Cadburry c= new Cadburry(chocolatecontent, choco_weight, choco_price, Choco_name, type);
+                list.add(c);
+            }
+            else if(Choco_name.equals("FiveStart"))
+            {
+                FiveStar f =new FiveStar(chocolatecontent, choco_weight, choco_price, Choco_name, type);
+                list.add(f);
+            }
+            else
+            {
+              Gems g =new Gems(chocolatecontent, choco_weight, choco_price, Choco_name, type);
+              list.add(g);
+            }
 
-       
-
-    System.out.println("Enter the Details of Kheer");
-    System.out.println("Enter the SugarContent of Kheer");
-    sugarcontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    sweetname =sc.next();
-    Kheer kheer = new Kheer(sugarcontent, weight, price, sweetname);
-
+          } 
+          else
+          {
+            System.out.println("Enter the SugarContent of "+type);
+            sugarcontent = sc.nextInt();
+            System.out.println("Enter the weight ");
+            weight = sc.nextInt();
+            System.out.println("Enter the price ");
+            price = sc.nextInt();
+            System.out.println("Enter the sweetname");
+            sweetname =sc.next();
+            if(sweetname.equals("GulabJamun"))
+            {
+                GulabJamun g =new GulabJamun(sugarcontent, weight, price, sweetname, type);
+                list.add(g);
+            }
+            else if(sweetname.equals("Halwa"))
+            {
+                Halwa h =new Halwa(sugarcontent, weight, price, sweetname, type);
+                list.add(h);
+            }
+            else
+            {
+                Kheer k =new Kheer(sugarcontent, weight, price, sweetname, type);
+                list.add(k);
+            }
+          }  
+    }
    
-    ArrayList<Sweets> list =new ArrayList<Sweets>();
-    list.add(halwa);
-    list.add(kheer);
-    list.add(gulabJamun);
-
-    for(Sweets s:list)
-    {
-        System.out.println(s);
-    }
-    
-    int totalweight = 0;
-    for(Sweets sweets: list)
-    {
-        totalweight+=sweets.get_weight();
-    }
+    int totalweight = get_totalweight(list);
     System.out.println("The Total Weight is "+totalweight);
    
-    System.out.println("Enter the Chocolate details ");
-    System.out.println("Enter the Details of Cadburry");
-    System.out.println("Enter the ChocolateContent of Cadburry");
-    chocolatecontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    choco_weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    choco_price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    Choco_name =sc.next();
-    Cadburry cadburry =new Cadburry(chocolatecontent,choco_weight , choco_price, Choco_name);
-    
-    
-    System.out.println("Enter the Details of FiveStar");
-    System.out.println("Enter the ChocolateContent of FiveStar");
-    chocolatecontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    choco_weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    choco_price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    Choco_name =sc.next();
-    FiveStar fiveStar=new FiveStar(chocolatecontent,choco_weight , choco_price, Choco_name);
-
-      
-
-    
-    System.out.println("Enter the Details of Gems");
-    System.out.println("Enter the ChocolateContent of Gems");
-    chocolatecontent = sc.nextInt();
-    System.out.println("Enter the weight ");
-    choco_weight = sc.nextInt();
-    System.out.println("Enter the price ");
-    choco_price = sc.nextInt();
-    System.out.println("Enter the sweetname");
-    Choco_name =sc.next();
-    Gems gems=new Gems(chocolatecontent,choco_weight , choco_price, Choco_name);
-
-    ArrayList<Chocolates> chocolates = new ArrayList<Chocolates>();
-    chocolates.add(cadburry);
-    chocolates.add(fiveStar);
-    chocolates.add(gems);
-
-
-    Collections.sort(chocolates,new Chocolates_sorter());
+    Collections.sort(list,new Chocolates_sorter());
     System.out.println("After Sorting the Chocolates based on Weights");
-    for(Chocolates c: chocolates)
+    for(Gifts c: list)
     {
+        if(c.get_type().equals("Chocolates"))
         System.out.println(c);
     }
+    
+    System.out.println("Enter the min value for range of weights");
+    int min = sc.nextInt();
+    System.out.println("Enter the max value for range of weights");
+    int max = sc.nextInt();
+    System.out.println("Gifts in the range ");
+    for(Gifts g : list)
+    {
+        if(g.get_weight()>=min && g.get_weight()<=max)
+        {
+            System.out.println(g);
+        }
+    }
+ 
+   
+    
+   
     sc.close();
    
 

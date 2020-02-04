@@ -2,13 +2,13 @@ package com.ArutlaHarish.mavenexample;
 public class Halwa extends Sweets
 {
 
-    public Halwa(int sugar_content, int weight, int price, String sweetname) {
+    public Halwa(int sugar_content, int weight, int price, String sweetname,String type) {
       
-        super(sugar_content, weight, price, sweetname); 
+        super(sugar_content, weight, price, sweetname,type); 
     }
 
     @Override
-    void Sweet_description() 
+    void description() 
     {
     System.out.println("I am Halwa and I like to be more orange");
     }
